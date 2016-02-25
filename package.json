@@ -1,0 +1,46 @@
+{
+  "name": "angular-demos",
+  "version": "1.0.0",
+  "description": "demos",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --bail --progress --profile",
+    "server": "webpack-dev-server --history-api-fallback --inline --progress",
+    "start": "npm run server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haner199401/angular-demos.git"
+  },
+  "keywords": [
+    "angular",
+    "demo",
+    "component"
+  ],
+  "author": "Haner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haner199401/angular-demos/issues"
+  },
+  "homepage": "https://github.com/haner199401/angular-demos#readme",
+  "dependencies": {
+    "angular": "^1.5.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.0.3",
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "copy-webpack-plugin": "^1.1.1",
+    "css-loader": "^0.23.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.4",
+    "html-webpack-plugin": "^2.7.1",
+    "null-loader": "^0.1.1",
+    "postcss-loader": "^0.8.0",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.13",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
