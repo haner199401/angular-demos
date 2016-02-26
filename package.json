@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --bail --progress --profile",
-    "server": "webpack-dev-server --history-api-fallback --inline --progress",
+    "server": "webpack-dev-server",
     "start": "npm run server"
   },
   "repository": {
@@ -35,12 +35,14 @@
     "css-loader": "^0.23.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.4",
+    "glob": "^7.0.0",
+    "gulp": "^3.9.1",
     "html-webpack-plugin": "^2.7.1",
     "null-loader": "^0.1.1",
     "postcss-loader": "^0.8.0",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
   }
 }
