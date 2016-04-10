@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="./lib/angular/angular.js"></script>
+</head>
+
+<body ng-app="myApp" ng-init="msg = 'hello,world'">
+
+<p>ng-init 初始化 {{msg}}</p>
+
+
+<input ng-model="text" id="oText"/>
+
+<p>输入了:{{text}} </p>
+
+<!-- hello world-->
+<div ng-controller="helloCtrl">
+    {{hello}}{{text}}
+</div>
+
+
+<script type="text/javascript">
+    var data = [
+        {name: 'a', num: 6},
+        {name: 'a', num: 7},
+        {name: 'b', num: 2},
+        {name: 'c', num: 3},
+        {name: 'd', num: 4}
+    ];
+
+
+    var app = angular.module('myApp', [])
+            .controller('helloCtrl', ['$scope', function (sp) {
+                sp.hello = '11';
+            }]);
+
+
+</script>
+</body>
+</html>

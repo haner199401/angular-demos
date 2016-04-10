@@ -1,0 +1,26 @@
+{
+  "name": "angular-demos",
+  "description": "demos",
+  "main": "index.js",
+  "authors": [
+    "Haner"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "angular",
+    "demo",
+    "component"
+  ],
+  "homepage": "https://github.com/haner199401/angular-demos",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "^1.5.3"
+  }
+}

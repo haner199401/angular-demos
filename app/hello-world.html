@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="./lib/angular/angular.js"></script>
+</head>
+
+<body ng-app="" ng-init="msg = 'hello,world'">
+
+<p>ng-init 初始化 {{msg}}</p>
+
+
+
+
+
+<pre>
+    启动方式1:
+    ng-app="" 启动 angular
+
+    启动方式2:
+    angular.module('ng-app的名称');
+
+    启动方式3:
+    angular.module('myApp', []).controller('MyController', ['$scope', function ($scope) {
+        $scope.msg = 'hello,world';
+    }]);
+
+    angular.element(document).ready(function() {
+        angular.bootstrap(document, ['myApp']);
+    });
+
+</pre>
+
+
+<script>
+
+
+</script>
+</body>
+</html>

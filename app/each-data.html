@@ -1,0 +1,35 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="./lib/angular/angular.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+<!--for 循环-->
+<div ng-controller="forCtrl">
+    <ul ng-repeat="item in data">
+        <li>{{item.name}}</li>
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+    var data = [
+        {name: 'a', num: 6},
+        {name: 'a', num: 7},
+        {name: 'b', num: 2},
+        {name: 'c', num: 3},
+        {name: 'd', num: 4}
+    ];
+
+
+    var app = angular.module('myApp', [])
+            .controller('forCtrl', ['$scope', function (sp) {
+                sp.data = data;
+            }]);
+
+
+</script>
+</body>
+</html>

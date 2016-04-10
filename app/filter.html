@@ -1,0 +1,59 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="./lib/angular/angular.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+
+<!--filter-->
+<div ng-controller="filterCtrl">
+    <input type="text" ng-model="query">
+    <ul ng-repeat="item in data | filter:query| orderBy:orderFiled">
+        <li>{{item.name}}</li>
+    </ul>
+</div>
+
+
+<!--custom filter-->
+<div ng-controller="customFilterCtrl">
+    <input type="text" ng-model="key">
+    <ul ng-repeat="item in data |customFilter:key">
+        <li>{{item.name}}</li>
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+    var data = [
+        {name: 'a', num: 6},
+        {name: 'a', num: 7},
+        {name: 'b', num: 2},
+        {name: 'c', num: 3},
+        {name: 'd', num: 4}
+    ];
+
+
+    var app = angular.module('myApp', [])
+            .controller('filterCtrl', ['$scope', function (sp) {
+                sp.data = data;
+                sp.orderFiled = 'num';
+            }])
+            .controller('customFilterCtrl', ['$scope', function (sp) {
+                sp.data = data;
+            }]);
+
+
+    app.filter('customFilter', [function () {
+        return function (data, key) {
+            return !key ? data : data.filter(function (item) {
+                return item.name == key;
+            });
+        }
+    }])
+
+
+</script>
+</body>
+</html>
