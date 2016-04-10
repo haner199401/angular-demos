@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Directive</title>
+    <script src="./lib/angular/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+
+
+<hello></hello>
+
+<div hello></div>
+
+<hr>
+
+
+<div ng-controller="Controller">
+    <div my-customer>
+        transclude : true
+    </div>
+
+    <hr>
+
+    <div tansclude-false>
+
+        transclude : false
+
+        <tansclude-false>
+            <div>dsada</div>
+        </tansclude-false>
+
+    </div>
+
+    <hr>
+
+    <div tansclude-true>
+
+        transclude : true
+
+        <tansclude-false>
+            <div>ng-transclude</div>
+        </tansclude-false>
+    </div>
+
+</div>
+
+<script>
+
+    var app = angular.module('myApp', []);
+
+    app.directive('hello', function () {
+        return {
+            restrice: 'EA',
+            template: 'Hello,World'
+        }
+    });
+
+    app.controller('Controller', ['$scope', function ($scope) {
+                $scope.msg = 'World';
+            }])
+            .directive('myCustomer', function () {
+                return {
+                    restrice: 'EA',
+                    templateUrl: 'custom-template.html'
+                };
+            })
+            .directive('tanscludeFalse', function () {
+                return {
+                    restrice: 'EA',
+                    transclude: false
+                }
+            })
+            .directive('tanscludeTrue', function () {
+                return {
+                    restrice: 'EA',
+                    transclude: true,
+                    template: '<div ng-transclude></div>'
+                }
+            });
+
+
+</script>
+</body>
+</html>

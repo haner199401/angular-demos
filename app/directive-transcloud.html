@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./lib/angular/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="Controller">
+    <my-dialog ng-hide="isHide" on-close="hideDialog()"></my-dialog>
+    {{msg}}
+</div>
+
+<script>
+    var myApp = angular.module('myApp', []);
+
+    myApp.controller('Controller', ['$scope', '$timeout', function ($scope, $timeout) {
+                $scope.msg = '关掉我试试';
+                $scope.word = [];
+                $scope.isHide = false;
+                $scope.hideDialog = function (msg) {
+                    $scope.msg = msg || '哎呦我去,可以啊!';
+                    $scope.isHide = true;
+                    $scope.word.push('哼!');
+                    $timeout(function () {
+                        $scope.msg = '就不让你关,咋滴!' + $scope.word.join(' ');
+                        $scope.isHide = false;
+                    }, 1000);
+                }
+            }])
+            .directive('myDialog', function () {
+                return {
+                    restrice: 'EA',
+                    transclude: true,
+                    scope: {
+                        closeDialog: '&onClose'
+                    },
+                    templateUrl: './tmpl/my-dialog.html'
+                }
+            });
+
+</script>
+</body>
+</html>
