@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Directive</title>
     <script src="./lib/angular/angular.js"></script>
 </head>
 <body ng-app="myApp">
@@ -33,7 +33,7 @@
                 return {
                     restrice: 'EA',
                     transclude: true,
-                    scope: {
+                    scope: {//创建独立作用域
                         closeDialog: '&onClose'
                     },
                     templateUrl: './tmpl/my-dialog.html'

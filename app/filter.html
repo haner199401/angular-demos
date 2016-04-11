@@ -24,6 +24,29 @@
     </ul>
 </div>
 
+<hr>
+
+<!--custom filter2-->
+<div ng-controller="Controller as ctrl">
+    <ul ng-repeat="item in ctrl.arr">
+        <li>{{item | customFilter2}}</li>
+    </ul>
+</div>
+
+<hr>
+
+<div ng-controller="reverseCtrl">
+    <input type="text" ng-model="key">
+
+    <div>
+    <p>Reverse Result:
+        <p>{{key | reverse}}</p>
+    </p>
+    <p>Reverse&Uppercase Result:
+        <p>{{key | reverse:!0}}</p>
+    </p>
+    </div>
+</div>
 
 <script type="text/javascript">
     var data = [
@@ -45,13 +68,43 @@
             }]);
 
 
+
+    app.controller('Controller',['$scope',function($scope){
+        this.arr = [1,2,3,4,5];
+    }]);
+
+
+
+    app.controller('reverseCtrl',['$scope',function($scope){
+       $scope.key = '123abc';
+    }]);
+
+
+
     app.filter('customFilter', [function () {
         return function (data, key) {
             return !key ? data : data.filter(function (item) {
                 return item.name == key;
             });
         }
-    }])
+    }]).filter('customFilter2',function(){
+        return function (o){
+            return o == 1 ? o : 2;
+        }
+    }).filter('reverse',function(){
+       return function (word,isUpper){
+           var input = word || '',
+                   result = '';
+           for(var i=0;i<input.length;i++){
+                result = input.charAt(i) + result;
+           }
+
+           if(isUpper) result = result.toUpperCase();
+
+           return result;
+       }
+    });
+
 
 
 </script>
