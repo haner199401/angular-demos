@@ -2,9 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>组件中使用 Link 操作 DOM</title>
+    <title>Directive</title>
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
+    <script src="./lib/angular/angular.js"></script>
+    <script src="./lib/jquery/dist/jquery.min.js"></script>
 </head>
-<body>
-$END$
+<body ng-app="myApp">
+    <div class="container">
+        <h3>Directive - Link</h3>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Directive - Link - Base</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <button simple-animate class="btn btn-danger">Click Me!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    var app = angular.module('myApp', []);
+
+    app.directive('simpleAnimate',function(){
+        return {
+            restrice:'EA',
+            link:function(scope,ele,attr){
+                $(ele).click(function(){
+                    $(this).stop().animate({width:'100%'})
+                });
+            }
+        }
+    });
+
+</script>
 </body>
 </html>
