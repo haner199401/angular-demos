@@ -2,9 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>指令之间交互方式</title>
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
+    <script src="./lib/angular/angular.js"></script>
+    <script src="./lib/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
 
+<div class="container">
+    <div class="row">
+        <h3> 指令之间通信(主要基于 require controller) </h3>
+
+        <div class="col-md-3">
+            <superman strength>
+                <button class="btn btn-success" ng-repeat="p in power">{{p}}</button>
+            </superman>
+        </div>
+        <div class="col-lg-12">
+            <superman strength speed>
+                <button type="button" class="btn btn-success" ng-repeat="p in power">{{p}}</button>
+            </superman>
+        </div>
+        <div class="col-md-3">
+            <superman strength speed light>
+
+            </superman>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    var app = angular.module('app', []);
+
+    angular.element(document).ready(function(){
+        angular.bootstrap(document, ['app']);
+    });
+
+
+    app.directive('superman',function(){
+        return {
+            restrict:'AE',
+            scope:true,
+            transclude:true,
+            template:'<p><button class="btn btn-primary" style="margin: 3px;" ng-repeat="p in power">{{p}}</button></p><div ng-transclude></div>',
+            controller:function($scope){
+                $scope.power = [];
+
+                this.addStrength=function(){
+                    $scope.power.push("strength");
+                };
+
+                this.addSpeed = function(){
+                    $scope.power.push('speed');
+                };
+
+                this.addLight = function(){
+                    $scope.power.push('light');
+                }
+            }
+        }
+    }).directive('strength',function(){
+        return{
+            require:'^superman',
+            link:function(scope,ele,attr,ctrl){
+                ctrl.addStrength('strength');
+            }
+        }
+    }).directive('speed',function(){
+        return{
+            require:'^superman',
+            link:function(scope,ele,attr,ctrl){
+                ctrl.addSpeed('speed');
+            }
+        }
+    }).directive('light',function(){
+        return{
+            require:'^superman',
+            link:function(scope,ele,attr,ctrl){
+                ctrl.addLight('light');
+            }
+        }
+    });
+
+
+</script>
 </body>
 </html>

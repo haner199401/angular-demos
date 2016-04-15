@@ -20,5 +20,5 @@ gulp.task('default',function() {
             baseDir: ['app']
         }
     });
-    gulp.watch(['./app/*']).on('change', reload);
+    gulp.watch(['./app/**']).on('change', reload);
 });
