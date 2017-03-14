@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$http</title>
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
+    <script src="./lib/angular/angular.js"></script>
+    <script src="./lib/jquery/dist/jquery.min.js"></script>
+    <script src="./lib/layer/src/layer.js"></script>
+</head>
+<body ng-app="app">
+<div class="container">
+    <h1>Angular $Http</h1>
+    <div class="row">
+        <table class="table" ng-controller="listCtrl">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Column heading</th>
+                <th>Column heading</th>
+                <th>Column heading</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="active" ng-repeat="item in data">
+                <th scope="row">{{$index}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.sex==0 ? '男' :'女'}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    var app = angular.module('app',[]);
+
+
+    app.controller('listCtrl',['$http','$scope','$timeout',function ($http,$scope,$timeout) {
+        $scope.data = [];
+        layer.load(2);
+        var promise = $http({
+            method:"get",
+            url:"./data.json",
+            cache:true
+        });
+        promise.then(function (data) {
+            $scope.data = data.data;
+            layer.closeAll();
+        },function () {
+            layer.closeAll();
+        });
+    }]);
+
+</script>
+</body>
+</html>
