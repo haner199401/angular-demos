@@ -23,6 +23,7 @@
   "devDependencies": {
     "angular": "^1.5.3",
     "bootstrap": "^3.3.6",
-    "layer": "^3.0.3"
+    "layer": "^3.0.3",
+    "mockjs": "^1.0.0"
   }
 }

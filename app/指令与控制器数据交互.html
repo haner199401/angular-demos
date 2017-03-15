@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Directive</title>
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
+    <script src="./lib/angular/angular.js"></script>
+    <script src="./lib/jquery/dist/jquery.min.js"></script>
+    <script src="./lib/mockjs/dist/mock-min.js"></script>
+</head>
+<body ng-app="myApp">
+<div class="container">
+    <div class="row">
+        <form ng-controller="ctrl">
+            <div class="form-group">
+                <list-table data="data" get-data="getData"></list-table>
+            </div>
+        </form>
+    </div>
+    <ol class="list-unstyled">
+        <li>
+            <h2><mark>@</mark>仅仅解析字符串</h2>
+        </li>
+        <li>
+            <h2><mark>=</mark>传递数据索引，双向绑定</h2>
+        </li>
+        <li>
+            <h2><mark>&</mark>返回一个函数来copy一份新数据 单项绑定</h2>
+        </li>
+    </ol>
+
+</div>
+
+<script>
+
+    var app = angular.module('myApp', []);
+
+    app.controller('ctrl', ['$scope','$timeout', function ($scope,$timeout) {
+        $scope.data = Mock.mock({
+            "data|1-20": [
+                {
+                    "name|+1": ["Hello", "Mock.js", "haner", "mrs"],
+                    "age|+1": [10,20,30],
+                    "sex|+1": [0,1]
+                }
+            ]
+        }).data;
+
+        $scope.getData = function (data) {
+            console.log('da',data);
+        };
+
+        $timeout(function () {
+            console.log($scope.data);
+        },5000);
+
+    }]);
+
+    app.directive('listTable',function () {
+        return {
+            restrict:"E",
+            scope:{
+                data:'&', // '='  '&' '@'
+                getData:'='
+            },
+            templateUrl: './tmpl/table.html',
+            link: function (scope, elem, attrs) {
+            },
+            controller:function ($scope,$timeout) {
+                $timeout(function () {
+                    $scope.data && $scope.data.pop();
+                    $scope.getData($scope.data);
+                },2000);
+
+                //函数传递 来调用
+                $scope.getData($scope.data);
+
+                console.log($scope);
+            }
+        }
+    });
+</script>
+</body>
+</html>

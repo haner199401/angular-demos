@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th><input type="checkbox" /></th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-class="$index%2==0 ? 'active':'info' " ng-repeat="item in data">
+        <th scope="row"><input type="checkbox" /></th>
+        <td>{{item.name}}</td>
+        <td>{{item.age || '未设置'}}</td>
+        <td>{{item.sex ? '男' : '女'}}</td>
+    </tr>
+    </tbody>
+</table>
